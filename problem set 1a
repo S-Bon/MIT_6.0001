@@ -1,0 +1,41 @@
+#pset 1a "house hunting"
+#1. Call the cost of your dream home total_cost.
+#2. Call the portion of the cost needed for a down payment portion_down_payment. For
+#simplicity, assume that portion_down_payment = 0.25 (25%).
+#3. Call the amount that you have saved thus far current_savings. You start with a current savings of $0. 
+#4. Assume that you invest your current savings wisely, with an annual return of r (in other words,
+#at the end of each month, you receive an additional current_savings*r/12 funds to put into
+#your savings – the 12 is because r is an annual rate). Assume that your investments earn a return of r = 0.04 (4%).
+#5. Assume your annual salary is annual_salary.
+#6. Assume you are going to dedicate a certain amount of your salary each month to saving for 
+#the down payment. Call that portion_saved. This variable should be in decimal form (i.e. 0.1 for 10%). 
+#7. At the end of each month, your savings will be increased by the return on your investment,
+#plus a percentage of your monthly salary (annual salary / 12).
+#Write a program to calculate how many months it will take you to save up enough money for a down payment.
+
+total_cost = float(input("How much does your dream home cost?"))
+down_payment = total_cost * (float(input("What percent is your down payment? Ex .25 = 25%"))) ## percent down payment
+annual_sal = float(input("What is your annual salary?"))
+portion_saved = float(input("Enter percentage as decimal of your salary you will save. Ex: 0.2 is 20%"))  ##portion of annual_sal saved)
+
+monthly_ror = 0.04/12        ##monthly rate of return on investment
+monthly_sal = annual_sal/12
+portion_saved = monthly_sal * portion_saved 
+Month = 1 
+current_savings = 0
+
+while current_savings <= down_payment:
+    Month +=1
+    current_savings += (portion_saved + (portion_saved * monthly_ror))
+print("Number of months:", Month)
+print("Number of years:", Month/12)  
+print ("Downpayment amount available at month", int(Month),":  ", current_savings)
+
+RESULT EXAMPLE:
+How much does your dream home cost? 300000
+What percent is your down payment? Ex .25 = 25% .2
+What is your annual salary? 99000
+Enter percentage as decimal of your salary you will save. Ex: 0.2 is 20% .3
+Number of months: 26
+Number of years: 2.1666666666666665
+Downpayment amount available at month 26 :   62081.25
