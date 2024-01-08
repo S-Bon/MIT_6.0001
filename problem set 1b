@@ -1,1 +1,35 @@
+# Pset 1b: using the pset 1a as a basis, add a raise every six months and recalculate.
 
+total_cost = float(input("How much does your dream home cost?"))
+down_payment = total_cost * (float(input("What percent is your down payment? Ex .25 = 25%"))) ## percent down payment
+annual_sal = float(input("What is your annual salary?"))
+portion_saved = float(input("Enter percentage as decimal of your salary you will save. Ex: 0.2 is 20%"))  ##portion of annual_sal saved)
+semi_annual_raise = float(input("Enter semi_annual raise as decimal. Ex: .03"))
+monthly_ror = 0.04/12        ##monthly rate of return on investment
+monthly_sal = annual_sal/12
+
+Month = 0 
+current_savings = 0
+
+
+while current_savings <= down_payment:
+    Month +=1
+    interest = current_savings * monthly_ror 
+    current_savings += ((monthly_sal * portion_saved) + interest)
+    if Month % 6 == 0:
+        annual_sal += (annual_sal * semi_annual_raise)
+        monthly_sal = annual_sal/12  # re-defining monthly_sal because annual_sal has been given a new calculation
+        
+print("Number of months:", Month)
+print("Number of years:", Month/12)  
+print ("Downpayment amount available at month", int(Month),":  ", current_savings)
+
+# RESULTS EXAMPLE:
+# How much does your dream home cost? 500000
+# What percent is your down payment? Ex .25 = 25% .25
+# What is your annual salary? 120000
+# Enter percentage as decimal of your salary you will save. Ex: 0.2 is 20% .05
+# Enter semi_annual raise as decimal. Ex: .03 .03
+# Number of months: 142
+# Number of years: 11.833333333333334
+# Downpayment amount available at month 142 :   125788.54396654238
